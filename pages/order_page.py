@@ -2,18 +2,18 @@ from pages.base_page import BasePage
 from locators.order_page_locators import OrderPageLocators
 from locators.common_locators import CommonLocators
 import allure
-import data
+from data import Urls
 
 
 class OrderPage(BasePage):
 
     @allure.step("Открыть главную страницу")
     def open_main_page(self):
-        self.open_page(data.MAIN_PAGE_URL)
+        self.open_page(Urls.MAIN_PAGE_URL)
 
     @allure.step("Открыть страницу заказа")
     def open_order_page(self):
-        self.open_page(data.ORDER_PAGE_URL)
+        self.open_page(Urls.ORDER_PAGE_URL)
 
     @allure.step("Скрыть плашку про куки")
     def hide_the_cookie_bar(self):
@@ -24,8 +24,8 @@ class OrderPage(BasePage):
         self.scroll_to_element(button)
         self.click_to_element(button)
 
-    @allure.step("Заполнить форму заказа")
-    def fill_order_form(self, random_user_data):
+    @allure.step("Заполнить первую страницу формы заказа")
+    def fill_first_page(self, random_user_data):
         self.add_text_to_element(OrderPageLocators.NAME_FIELD, random_user_data['first_name'])
         self.add_text_to_element(OrderPageLocators.SURNAME_INPUT, random_user_data['last_name'])
         self.add_text_to_element(OrderPageLocators.ADDRESS_INPUT, random_user_data['address'])
@@ -33,10 +33,16 @@ class OrderPage(BasePage):
         self.click_to_element(OrderPageLocators.METRO_STATION_INPUT)
         self.click_to_element(OrderPageLocators.FIRST_METRO_STATION)
         self.click_to_element(OrderPageLocators.NEXT_BUTTON)
+
+    @allure.step("Заполнить вторую страницу формы заказа")
+    def fill_second_page(self, random_user_data):
         self.click_to_element(OrderPageLocators.RENTAL_PERIOD)
         self.click_to_element(OrderPageLocators.TWO_DAYS)
         self.add_text_to_element(OrderPageLocators.DATEPICKER, random_user_data['tomorrow'])
         self.click_to_element(OrderPageLocators.ORDER_BUTTON)
         self.click_to_element(OrderPageLocators.OK_BUTTON)
+
+    @allure.step("Получить статус заказа")
+    def get_order_status(self):
         self.find_element_with_wait(OrderPageLocators.ORDER_STATUS)
         return self.get_text_from_element(OrderPageLocators.ORDER_STATUS)

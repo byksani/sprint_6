@@ -1,7 +1,7 @@
 from pages.base_page import BasePage
 from locators.main_page_locators import MainPageLocators
 from locators.common_locators import CommonLocators
-import data
+from data import Urls
 import allure
 
 
@@ -9,7 +9,7 @@ class MainPage(BasePage):
 
     @allure.step("Открытие главной страницы")
     def open(self):
-        self.open_page(data.MAIN_PAGE_URL)
+        self.open_page(Urls.MAIN_PAGE_URL)
 
     @allure.step("Скрыть плашку про куки")
     def hide_the_cookie_bar(self):

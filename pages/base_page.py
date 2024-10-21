@@ -52,9 +52,8 @@ class BasePage:
 
     @allure.step("Форматировать локаторы: {locator_1} с числом {num}")
     def format_locators(self, locator_1, num):
-        method, locator = locator_1 # '//*[@class="my-question-locator-{}"]'
-        locator = locator.format(num) # '//*[@class="my-question-locator-1"]'
-        # f'{num}'
+        method, locator = locator_1
+        locator = locator.format(num)
         return method, locator
 
     @allure.step("Проверить текущую страницу: {expected_url}")

@@ -1,6 +1,6 @@
 import pytest
 import allure
-from data import ANSWER_NUM_AND_TEXTS
+from data import AnswerTexts
 from pages.main_page import MainPage
 
 
@@ -11,14 +11,14 @@ class TestMainPage:
     @pytest.mark.parametrize(
         'num, result',
         [
-            (0, ANSWER_NUM_AND_TEXTS.get(0)),
-            (1, ANSWER_NUM_AND_TEXTS.get(1)),
-            (2, ANSWER_NUM_AND_TEXTS.get(2)),
-            (3, ANSWER_NUM_AND_TEXTS.get(3)),
-            (4, ANSWER_NUM_AND_TEXTS.get(4)),
-            (5, ANSWER_NUM_AND_TEXTS.get(5)),
-            (6, ANSWER_NUM_AND_TEXTS.get(6)),
-            (7, ANSWER_NUM_AND_TEXTS.get(7))
+            (0, AnswerTexts.ANSWER_NUM_AND_TEXTS.get(0)),
+            (1, AnswerTexts.ANSWER_NUM_AND_TEXTS.get(1)),
+            (2, AnswerTexts.ANSWER_NUM_AND_TEXTS.get(2)),
+            (3, AnswerTexts.ANSWER_NUM_AND_TEXTS.get(3)),
+            (4, AnswerTexts.ANSWER_NUM_AND_TEXTS.get(4)),
+            (5, AnswerTexts.ANSWER_NUM_AND_TEXTS.get(5)),
+            (6, AnswerTexts.ANSWER_NUM_AND_TEXTS.get(6)),
+            (7, AnswerTexts.ANSWER_NUM_AND_TEXTS.get(7))
         ]
     )
     def test_questions_and_answers(self, driver, num, result):
